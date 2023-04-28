@@ -156,7 +156,4 @@
 
 @section('scripts')
 
-    @include('partials.back.bs_custom_file')
-    @include('partials.back.jquery_confirm_btn')
-
 @endsection

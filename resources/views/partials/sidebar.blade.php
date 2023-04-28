@@ -21,7 +21,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('banners.index') }}"
-                        class="nav-link {{ $current == 'sliders' ? 'active' : null }}">
+                        class="nav-link {{ $current == 'banners' ? 'active' : null }}">
                         <i class="nav-icon fas fa-columns"></i>
                         <p>
                             {{ __('Bannières') }}
@@ -29,35 +29,9 @@
                     </a>
                 </li>
 
-
-                <li class="nav-item {{ ($current == 'reports_create' or $current == 'reports' or $current == 'categories' or $current == 'reports_index' or $current == 'reports_draft') ? 'menu-open' : null }}"
-                    aria-expanded="{{ ($current == 'reports' or $current == 'categories' or $current == 'reports_index' or $current == 'active') ? 'true' : 'false' }}">
-                    <a href="#"
-                        class="nav-link {{ ($current == 'reports_create' or $current == 'reports' or $current == 'categories' or $current == 'reports_index' or $current == 'reports_draft') ? 'active' : null }}">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            {{ __('Items') }}
-                            <i class="fas fa-angle-right right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item ml-3">
-                            <a href="" class="nav-link {{ $current == 'categories' ? 'active' : null }}">
-                                <i class="nav-icon fas fa-layer-group"></i>
-                                <p>{{ __('Catégories') }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ml-3">
-                            <a href="" class="nav-link {{ $current == 'reports_create' ? 'active' : null }}">
-                                <i class="nav-icon fas fa-folder-plus"></i>
-                                <p>{{ __('Items') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ $current == 'pillars' ? 'active' : null }}">
+                    <a href="{{ route('partners.index') }}"
+                        class="nav-link {{ $current == 'partners' ? 'active' : null }}">
                         <i class="nav-icon fas fa-columns"></i>
                         <p>
                             {{ __('Partenaires') }}
@@ -69,14 +43,6 @@
                         <i class="nav-icon fas fa-columns"></i>
                         <p>
                             {{ __('Parametres') }}
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link {{ $current == 'pillars' ? 'active' : null }}">
-                        <i class="nav-icon fas fa-columns"></i>
-                        <p>
-                            {{ __('Utilisateurs') }}
                         </p>
                     </a>
                 </li>

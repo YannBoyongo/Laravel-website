@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,16 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
+    //Partners
+    Route::controller(PartnerController::class)->group(function () {
+        Route::get('/partners', 'index')->name('partners.index');
+        Route::post('/partners', 'store')->name('partners.store');
+        Route::get('/partners/deactivate/{partner}', 'deactivate')->name('partners.deactivate');
+        Route::get('/partners/activate/{partner}', 'activate')->name('partners.activate');
+        Route::get('/partners/delete/{partner}', 'delete')->name('partners.delete');
+    });
+
+    //Banner
     Route::controller(BannerController::class)->group(function () {
         Route::get('/banners', 'index')->name('banners.index');
         Route::get('/banners/{banner}/edit', 'edit')->name('banners.edit');

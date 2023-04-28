@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -38,10 +39,7 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title_fr' => 'nullable',
-            'title_en' => 'nullable',
-            'description_fr' => 'nullable',
-            'description_en' => 'nullable',
+            'title' => 'nullable',
             'image' => 'required|image',
         ]);
 
@@ -50,14 +48,12 @@ class BannerController extends Controller
         if ($requestedImage) {
             $image_name = time() . '.' . $requestedImage->getClientOriginalExtension();
             $imgFile = \Intervention\Image\Facades\Image::make($requestedImage->getRealPath())
-                ->resize($width, $height, function ($constraint) {
+                ->resize(1200, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->stream();
 
-            Storage::disk('public')->put($folder . '/' . '/' . $image_name, $imgFile, 'public');
+            Storage::disk('public')->put('banners/' . '/' . $image_name, $imgFile, 'public');
         }
-
-       
 
         $data['image'] = $image_name;
         Banner::create($data);
@@ -69,7 +65,7 @@ class BannerController extends Controller
     public function deactivate(banner $banner)
     {
         $banner = Banner::find($banner->id);
-        $banner->status = Banner::banner_INACTIVE;
+        $banner->status = Banner::INACTIVE;
         $banner->save();
 
         return redirect()->route('banners.index')->with("message", __('Bannière désactivée'));
@@ -79,7 +75,7 @@ class BannerController extends Controller
     public function activate(banner $banner)
     {
         $banner = Banner::find($banner->id);
-        $banner->status = Banner::banner_ACTIVE;
+        $banner->status = Banner::ACTIVE;
         $banner->save();
 
         return redirect()->route('banners.index')->with("message", __('Bannière activée'));
@@ -91,9 +87,17 @@ class BannerController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:png,jpg,jpeg|max:20480',
         ]);
-        $image = $request->file('image');
+        $requestedImage = $request->file('image');
 
-        $image_name = uploadbannerImageFile($image, 'banners');
+        if ($requestedImage) {
+            $image_name = time() . '.' . $requestedImage->getClientOriginalExtension();
+            $imgFile = \Intervention\Image\Facades\Image::make($requestedImage->getRealPath())
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->stream();
+
+            Storage::disk('public')->put('banners/' . '/' . $image_name, $imgFile, 'public');
+        }
 
         $banner->image = $image_name;
         $banner->save();
@@ -103,7 +107,10 @@ class BannerController extends Controller
 
     public function delete_image(banner $banner)
     {
-        delete_image('banners', $banner);
+        if (is_file(public_path('storage/banners/' . '' . $banner->image))) {
+            unlink(public_path('storage/banners/' . '' . $banner->image));
+        }
+
         Banner::where('id', $banner->id)->update(['image' => null]);
 
         return redirect()->back()->with('message', __('Image supprimée'));
@@ -141,8 +148,7 @@ class BannerController extends Controller
     public function update(Request $request, banner $banner)
     {
         $data = $request->validate([
-            'title_fr' => 'string|nullable',
-            'title_en' => 'string|nullable',
+            'title' => 'string|nullable',
         ]);
         $banner_id = $request->bannerId;
         Banner::where('id', $banner_id)->update($data);
