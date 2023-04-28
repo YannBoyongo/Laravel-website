@@ -24,7 +24,19 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('banners', BannerController::class);
+
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('/banners', 'index')->name('banners.index');
+        Route::get('/banners/{banner}/edit', 'edit')->name('banners.edit');
+        Route::put('/banners/{banner}', 'update')->name('banners.update');
+        Route::post('/banners', 'store')->name('banners.store');
+        Route::get('/banners/deactivate/{banner}', 'deactivate')->name('banners.deactivate');
+        Route::get('/banners/activate/{banner}', 'activate')->name('banners.activate');
+        Route::put('banners-add-image/{banner}', 'add_image')->name('banners.add.image');
+        Route::put('banners-delete-image/{banner}', 'delete_image')->name('banners.delete.image');
+        Route::delete('banners/{banner}', 'destroy')->name('banners.destroy');
+    });
+
     // Auth Controller
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
