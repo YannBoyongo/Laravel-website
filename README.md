@@ -1,9 +1,10 @@
-## Lost Found
+## Laravel Website
+This is a simple website made for Football center in order to allow the organisation to get a website and promote what they do.
 
-this is a simple platform from Laravel framework of PHP what will publish lost id cards that people usually forget at the banks, at the border and any other places the project has 2 parts:
+This webiste has 2 parts:
 
-- viewer part: where the lost id cards will be listed.
-- admin part: where admin will be adding the lost id card and update their status once owners have collected.
+- Admin dashboard: made with Admillte dashboard them.
+- Visitors are: the main part of the website accessible to all visitors.
 
 The choice of Laravel is because it is accessible, powerful, and provides tools required for large, robust applications.
 
