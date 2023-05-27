@@ -25,14 +25,6 @@
             <h2>Clonage et duplication (fork) de dépôts à partir de GitHub Desktop </h2>
 
             <p>Les dépôts sur GitHub sont des dépôts distants. Vous pouvez cloner ou dupliquer un dépôt avec GitHub Desktop pour créer un dépôt local sur votre ordinateur.
-
-Vous pouvez créer une copie locale d’un dépôt sur GitHub auquel vous avez accès en clonant le dépôt. Si vous êtes propriétaire d’un dépôt ou si vous disposez d’autorisations d’accès en écriture, vous pouvez synchroniser les emplacements locaux et distants. Pour plus d’informations, consultez « Synchronisation de votre branche dans GitHub Desktop ».
-
-Quand vous clonez un dépôt, les changements que vous poussez vers GitHub affectent le dépôt d’origine. Pour apporter des changements sans affecter le projet d’origine, vous pouvez créer une copie distincte en dupliquant le dépôt. Vous pouvez créer une demande de tirage (pull request) pour proposer aux responsables de gestion d’incorporer les changements de votre duplication (fork) dans le dépôt amont d’origine. Pour plus d’informations, consultez « À propos des duplications (fork) ».
-
-Quand vous essayez d’utiliser GitHub Desktop pour cloner un dépôt auquel vous n’avez pas accès en écriture, GitHub Desktop vous invite à créer automatiquement une duplication. Vous pouvez utiliser votre duplication pour contribuer au dépôt amont d’origine ou pour travailler indépendamment sur votre propre projet. Les duplications existantes contribuent par défaut aux changements apportés à leurs dépôts amont. Vous pouvez modifier ce choix à tout moment. Pour plus d’informations, consultez « Gestion du comportement de la duplication ».
-
-Vous pouvez également cloner un dépôt directement à partir de GitHub ou GitHub Enterprise. Pour plus d’informations, consultez « Clonage d’un dépôt de GitHub vers GitHub Desktop ».
-         </div></p>
+/p>
     </body>
 </html>
